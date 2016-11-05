@@ -1,0 +1,13 @@
+<ul class="col-xs-12 js-chat">
+  <% conversation.messages.each do |message| %>
+    <li class="chat-<%= message.type %>">
+      <%= message.content %>
+    </li>
+  <% end %>
+</ul>
+<form action="<%= api_v1_messages_path %>" method="POST">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="text" name="content" class="form-control">
+  <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
+  <input type="submit" class="btn btn-success">
+</form>
