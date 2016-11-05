@@ -13,3 +13,22 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+ul li{
+  list-style: none; 
+  margin:5px;
+  padding:10px;
+  border-radius: 5px;
+  color: white;
+}
+.chat-marie {
+  text-align:left;
+  padding-left: 15px;
+  background: #9b59b6;
+}
+
+.chat-lady {
+  padding-right: 15px;
+  text-align:right;
+  background: #c698bf;
+}

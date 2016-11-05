@@ -1,13 +1,24 @@
-<ul class="col-xs-12 js-chat">
-  <% conversation.messages.each do |message| %>
-    <li class="chat-<%= message.type %>">
-      <%= message.content %>
-    </li>
-  <% end %>
-</ul>
-<form action="<%= api_v1_messages_path %>" method="POST">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  <input type="text" name="content" class="form-control">
-  <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
-  <input type="submit" class="btn btn-success">
-</form>
+<%= link_to 'Pagina principal', root_path %>
+<div class="col-xs-12">
+  <ul class="col-xs-6 js-chat">
+    <% conversation.messages.each do |message| %>
+      <li class="chat chat-<%= message.type %>">
+        <%= message.content %>
+        <% unless message.video.nil? %>
+          (Video:<%= message.video %>)
+        <% end %>
+      </li>
+    <% end %>
+    <form action="<%= api_v1_messages_path %>" method="POST">
+      <div class="col-xs-10">
+        <input type="text" name="content" class="form-control">
+      </div>
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
+      <div class="col-xs-2">
+        <input type="submit" class="btn btn-success">
+      </div>
+    </form>
+  </ul>
+  
+</div>
