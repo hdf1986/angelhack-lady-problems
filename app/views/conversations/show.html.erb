@@ -36,13 +36,13 @@
                           </li>
                         <% end %>
                     </ol>
-                        <form class="send-message" action="<%= api_v1_messages_path %>" method="POST">
-                          <div class="col-xs-12"  style="text-align: right;">
-                            <input class="textarea" placeholder="Escribime tu mensaje" type="text" name="content">
-                          </div>
-                          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                          <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
-                        </form>
+                    <form class="send-message" action="<%= api_v1_messages_path %>" method="POST">
+                      <div class="col-xs-12"  style="text-align: right;">
+                        <input class="textarea" placeholder="Escribime tu mensaje" type="text" name="content">
+                      </div>
+                      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                      <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
+                    </form>
         </div>
       </header>
 

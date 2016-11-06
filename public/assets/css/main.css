@@ -3135,6 +3135,9 @@
     padding: 0 0 50px 0;
     /*margin-top: 60px;*/
     margin-bottom: 10px;
+    height: 50vh;
+    overflow-y: scroll;
+
 }
 .chat li {
     padding: 0.5rem;
