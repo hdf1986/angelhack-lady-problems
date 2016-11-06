@@ -142,12 +142,13 @@ var lastTime = new Date().getTime();
 				populateMessages(data);
 			},
 			complete: function(){
-				setTimeout(loadMessages, 300);
+				setTimeout(loadMessages, 1500);
 			}
 		});
 	}
 	var populateMessages = function(messages) {
 		var container = $('.js-chat');
+		var screenboard = $('.screenboard');
 		$.each(messages, function(e,i){
 			var clase = 'pink ';
 			var clase2 = '';
@@ -155,8 +156,14 @@ var lastTime = new Date().getTime();
 				clase = 'purple lighten-4 talk-to-marie';
 				clase = 'talk-to-marie';
 			}
-			if(i['content'] != 'non'){
-				container.append('<div class=" ' + clase2 + 'row hello"><div class="col s3 m9"><div class="card-panel ' + clase + ' lighten-3 z-depth-5"><span class="black-text">' + i['content'] +'</span></div></div></div>')
+			console.log(container);
+				container.append('<div class=" ' + clase2 + ' row hello"><div class="col s3 m9"><div class="card-panel ' + clase + ' lighten-3 z-depth-5"><span class="black-text">' + i['content'] +'</span></div></div></div>')
+			
+			if(i['video'] != ''){
+				screenboard.empty().show(300).append('')
+			}
+			else if(i['image'] != ''){
+				screenboard.empty().show(300).append('')
 			}
 		})
 	}
