@@ -27,13 +27,15 @@
                     <!--CHAT-->
                     <ol class="chat js-chat">
                         <% conversation.messages.present.each do |message| %>
-                          <li class="<%= msg_class(message.type) %>">
-                            <div class="msg">
-                              <p>
-                                <%= message.content %>
-                              </p>
-                            </div>
-                          </li>
+                          <% unless message.content == 'non' %>
+                            <li class="<%= msg_class(message.type) %>">
+                              <div class="msg">
+                                <p>
+                                  <%= message.content %>
+                                </p>
+                              </div>
+                            </li>
+                          <% end %>
                         <% end %>
                     </ol>
                     <form class="send-message" action="<%= api_v1_messages_path %>" method="POST">

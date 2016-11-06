@@ -153,7 +153,9 @@ var lastTime = new Date().getTime();
 			if (i['type'] == 'lady'){
 				clase = 'self';
 			}
-			container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div></li>')
+			if(i['content'] != 'non'){
+				container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div></li>')
+			}
 		})
 	}
 	$('.send-message').submit(function(e){
