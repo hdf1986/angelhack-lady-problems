@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
         <link rel="icon" href="/images/marie_hi.png" type="image/gif" sizes="16x16">
+    <script>
+      var conversationId = <%= conversation.id %>; 
+    </script>
   </head>
   <body id="top">
 
@@ -22,7 +25,7 @@
           <a href="/#" class="image avatar"><img src="/images/marie_hi.png" alt="" /></a>
                     
                     <!--CHAT-->
-                    <ol class="chat">
+                    <ol class="chat js-chat">
                         <% conversation.messages.each do |message| %>
                           <li class="<%= msg_class(message.type) %>">
                             <div class="msg">
@@ -32,14 +35,14 @@
                             </div>
                           </li>
                         <% end %>
-                        <form action="<%= api_v1_messages_path %>" method="POST">
+                    </ol>
+                        <form class="send-message" action="<%= api_v1_messages_path %>" method="POST">
                           <div class="col-xs-12"  style="text-align: right;">
                             <input class="textarea" placeholder="Escribime tu mensaje" type="text" name="content">
                           </div>
                           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
                           <input type="hidden" name="conversation_id" class="form-control" value="<%= conversation.id %>">
                         </form>
-                    </ol>
         </div>
       </header>
 
