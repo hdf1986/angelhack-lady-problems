@@ -142,7 +142,7 @@ var lastTime = new Date().getTime();
 				populateMessages(data);
 			},
 			complete: function(){
-				setTimeout(loadMessages, 500);
+				setTimeout(loadMessages, 900);
 			}
 		});
 	}
@@ -153,18 +153,7 @@ var lastTime = new Date().getTime();
 			if (i['type'] == 'lady'){
 				clase = 'self';
 			}
-			container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div><li>')
-		})
-	}
-
-	var populateMessages = function(messages) {
-		var container = $('.js-chat');
-		$.each(messages, function(e,i){
-			var clase = 'other';
-			if (i['type'] == 'lady'){
-				clase = 'self';
-			}
-			container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div><li>')
+			container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div></li>')
 		})
 	}
 	$('.send-message').submit(function(e){

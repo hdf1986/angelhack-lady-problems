@@ -3,10 +3,16 @@ class Marie
     'Hola! Como estas?', 
     'Hola! Como andas?'
   ]
+  HAPPY_EMOJIS = [
+    '😁',
+    '😃',
+    '😊'
+  ]
   INITIAL_QUESTIONS = [
     'Que estas necesitando?',
     'Que queres aprender?',
-    'Tenes alguna duda?'
+    'Tenes alguna duda?',
+    'Si queres escribime tus preguntas, puedo ayudarte' + HAPPY_EMOJIS.sample
   ]
   ANSWERS = {
     'crear portal web' => {
@@ -57,11 +63,6 @@ class Marie
     },
   }
   
-  HAPPY_EMOJIS = [
-    '😁',
-    '😃',
-    '😊'
-  ]
 
   DIDNT_UNDERSTAND = [
     'No te entendi, me lo repetis?',
@@ -80,13 +81,33 @@ class Marie
     'Espero te haya sido de utilidad, cualquier cosa decime ' + HAPPY_EMOJIS.sample
   ]
 
+  LISTENING = [
+    'Te escucho ' + HAPPY_EMOJIS.sample,
+    'Decime ' + HAPPY_EMOJIS.sample
+  ]
+
   YOU_ARE_BEATIFUL = '😍'
+
+  def self.welcome conversation
+    Message.create(
+      type: :marie,
+      content: "#{GREETINGS.sample} #{HAPPY_EMOJIS.sample}",
+      conversation: conversation,
+      created_at: (Time.now + 1.seconds)
+    )
+    Message.create(
+      type: :marie,
+      content: INITIAL_QUESTIONS.sample,
+      conversation: conversation,
+      created_at: (Time.now + 2.seconds)
+    )
+  end
 
   def self.talk conversation
     if MessageCorrector.check(conversation.lady_messages.last.content, 'hola')
       Message.create(
         type: :marie,
-        content: "#{GREETINGS.sample} #{HAPPY_EMOJIS.sample}",
+        content: "#{LISTENING.sample} #{HAPPY_EMOJIS.sample}",
         conversation: conversation
       )
       Message.create(
@@ -143,6 +164,11 @@ class Marie
       'existe',
       'gracias',
     ]
+
+    SINONIMS = {
+      'hacer' => ['crear']
+    }
+
     def self.is_question? msg
       msg = process_question msg
       ANSWERS.key?(msg)
@@ -150,7 +176,18 @@ class Marie
 
     def self.process_question msg
       msg = msg.downcase
+      msg = replace_sinonims(msg)
       msg = remove_special(msg)
+    end
+
+    def self.replace_sinonims msg
+      SINONIMS.each do |key,sinonims|
+        sinonims.each do |sinonim|
+          binding.pry
+          msg = msg.gsub(sinonim, key)
+        end
+      end
+      msg
     end
 
     def self.remove_special msg
