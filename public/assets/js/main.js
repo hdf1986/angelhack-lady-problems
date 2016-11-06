@@ -149,11 +149,15 @@ var lastTime = new Date().getTime();
 	var populateMessages = function(messages) {
 		var container = $('.js-chat');
 		$.each(messages, function(e,i){
-			var clase = 'other';
+			var clase = 'pink ';
+			var clase2 = '';
 			if (i['type'] == 'lady'){
-				clase = 'self';
+				clase = 'purple lighten-4 talk-to-marie';
+				clase = 'talk-to-marie';
 			}
-			container.append('<li class="' + clase + '"><div class="msg"><p>' + i['content'] +'</p></div></li>')
+			if(i['content'] != 'non'){
+				container.append('<div class=" ' + clase2 + 'row hello"><div class="col s3 m9"><div class="card-panel ' + clase + ' lighten-3 z-depth-5"><span class="black-text">' + i['content'] +'</span></div></div></div>')
+			}
 		})
 	}
 	$('.send-message').submit(function(e){

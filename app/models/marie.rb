@@ -167,11 +167,22 @@ class Marie
       answer = ANSWERS[
         MessageCorrector.process_question(conversation.lady_messages.last.content)
       ]
+      delay = 1
+      [*answer[:content]].each do |message|
+        message = Message.new(
+          type: :marie,
+          content: message,
+          conversation: conversation,
+          created_at: (Time.now + delay.seconds)
+        )
+        message.save
+        delay+=1
+      end
       message = Message.new(
-        type: :marie,
-        content: answer[:content],
-        conversation: conversation
-      )
+          type: :marie,
+          content: 'non',
+          conversation: conversation
+        )
       message.video = answer[:video] unless answer[:video].nil?
       message.save
     elsif MessageCorrector.check(conversation.lady_messages.last.content, 'chau')

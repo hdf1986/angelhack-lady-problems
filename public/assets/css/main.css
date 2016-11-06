@@ -14,7 +14,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: caption;
+		font: menu;
 		vertical-align: baseline;
 	}
 
@@ -1748,7 +1748,7 @@
 /* Form */
 
 	form {
-		margin: 0 0 2em 0;
+		margin: 0;
 	}
 
 	label {
@@ -2488,7 +2488,7 @@
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
-		padding: 3em 4em;
+		padding: 3em 4em 1em 2em;
 		position: fixed;
 		/*text-align: right;*/
 		top: 0;
@@ -2508,7 +2508,7 @@
 			-webkit-flex-grow: 1;
 			-ms-flex-grow: 1;
 			flex-grow: 1;
-			margin: 0 0 2em 0;
+			margin: 0;
 		}
 
 		#header strong, #header b {
@@ -2579,7 +2579,7 @@
 		#main > section {
 			border-top: solid 2px #efefef;
 			margin: 4em 0 0 0;
-			padding: 4em 0 0 0;
+			/*padding: 4em 0 0 0;*/
 		}
 
 			#main > section:first-child {
@@ -3135,9 +3135,8 @@
     padding: 0 0 50px 0;
     /*margin-top: 60px;*/
     margin-bottom: 10px;
-    height: 50vh;
-    overflow-y: scroll;
-
+}
+.height-chat {
 }
 .chat li {
     padding: 0.5rem;
@@ -3380,4 +3379,9 @@ input.textarea {
 }
 .emojis:active {
     opacity: 0.9;
+}
+
+.talk-to-marie {
+	float: right !important;
+	text-align:right !important;
 }

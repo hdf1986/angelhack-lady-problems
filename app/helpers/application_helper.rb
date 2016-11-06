@@ -1,9 +1,17 @@
 module ApplicationHelper
   def msg_class type
     if type == 'marie'
-      return 'other'
+      return 'pink'
     else
-      return 'self'
+      return 'purple lighten-4 talk-to-marie'
+    end
+  end
+
+   def msg_class2 type
+    if type == 'marie'
+      return ''
+    else
+      return 'talk-to-marie'
     end
   end
 end
