@@ -88,6 +88,10 @@ class Marie
 
   YOU_ARE_BEATIFUL = '😍'
 
+  UNKNOWN_LANG = {
+    'german' => 'Sprichst du Deutsch? Versuch  diesen link',
+    'english' => 'Do you speak English? Try with this link'
+  }
   def self.welcome conversation
     Message.create(
       type: :marie,
@@ -104,7 +108,14 @@ class Marie
   end
 
   def self.talk conversation
-    if MessageCorrector.check(conversation.lady_messages.last.content, 'hola')
+    lang = detect_lang(conversation.lady_messages.last.content)
+    if lang != 'unknown' && lang != 'spanish'
+      Message.create(
+        type: :marie,
+        content: UNKNOWN_LANG[lang],
+        conversation: conversation
+      )
+    elsif MessageCorrector.check(conversation.lady_messages.last.content, 'hola')
       Message.create(
         type: :marie,
         content: "#{LISTENING.sample} #{HAPPY_EMOJIS.sample}",
@@ -141,6 +152,27 @@ class Marie
     end
   end
 
+  def self.detect_lang msg
+    MessageTranslator.detect_lang(msg)
+  end
+
+  class MessageTranslator
+    def self.detect_lang msg
+      if count_words(msg) >= 5
+        require "unirest"
+        require "havenondemand"
+        client = HODClient.new('271302e4-4d4d-43ce-8990-699c369e10d5', 'v1')
+        r = client.post('identifylanguage', {:text => msg})
+        r.response.body['language']
+      else
+        'unknown'
+      end
+    end
+
+    def self.count_words msg
+      msg.split(' ').length
+    end
+  end
   class MessageCorrector
     USELESS_WORDS = [
       'como',
@@ -166,7 +198,7 @@ class Marie
     ]
 
     SINONIMS = {
-      'hacer' => ['crear']
+      'crear' => ['hacer']
     }
 
     def self.is_question? msg
@@ -176,14 +208,13 @@ class Marie
 
     def self.process_question msg
       msg = msg.downcase
-      msg = replace_sinonims(msg)
       msg = remove_special(msg)
+      msg = replace_sinonims(msg)
     end
 
     def self.replace_sinonims msg
       SINONIMS.each do |key,sinonims|
         sinonims.each do |sinonim|
-          binding.pry
           msg = msg.gsub(sinonim, key)
         end
       end

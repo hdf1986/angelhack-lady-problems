@@ -142,7 +142,7 @@ var lastTime = new Date().getTime();
 				populateMessages(data);
 			},
 			complete: function(){
-				setTimeout(loadMessages, 900);
+				setTimeout(loadMessages, 300);
 			}
 		});
 	}
