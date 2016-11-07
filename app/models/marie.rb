@@ -18,8 +18,8 @@ class Marie
     'crear portal web' => {
       content: ['Interesante pregunta, hermosa', 
         'Proba con este video',
-        'Que te explica paso a paso como hacerlo']
-      video: 'https://www.youtube.com/watch?v=vbdwF5DCAUw'
+        'Que te explica paso a paso como hacerlo'],
+      video: 'https://www.youtube.com/embed/vbdwF5DCAUw'
     },
     'crear blog' => {
       content: ['Si queres crear un blog existe un programa que te puede ayudar.',
@@ -30,11 +30,11 @@ class Marie
       ],
       image: 'https://norfipc.com/img/otros2/crear-nuevo-blog-blogger-1.jpeg'
       },
-    'hacer juego' => {
+    'crear juego' => {
       content: ['Me emociona que hagas preguntas de tecnologia',
         'En este enlace te muestra como hacerlo en sencillos pasos',
         ],
-      video: 'https://www.youtube.com/watch?v=hgApDIMI4Z0'
+      video: 'https://www.youtube.com/embed/hgApDIMI4Z0'
     },
     'crear portal administrar cartera proyectos forma dinamica' => {
       content: ['Muy bueno que te intereses en este tema',
@@ -62,7 +62,7 @@ class Marie
         'Es el corazon de la computadora',
         'Te muestro una imagen de como es y un resumen de ella',
         ],
-      image: 'https://www.google.com/search?q=memoria+ram&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj-gJPgs5TQAhXpqlQKHRUqBKYQ_AUICCgB&biw=1366&bih=677#imgrc=uIh19Lw3RU41BM%3A'
+      image: 'http://www.definicionabc.com/wp-content/uploads/memoria-ram.jpg'
     },
     'compuesta computadora' => {
       content: ['Muy interesante',
@@ -72,7 +72,7 @@ class Marie
     },
     'crear robot' => {
       content: ['Es un tema muy interesante',
-        'Hay varios tipos de robot'
+        'Hay varios tipos de robot',
         'Te dare un link para hacer uno en simples pasos: http://es.wikihow.com/construir-un-robot-de-control-remoto'
       ],
     },
@@ -81,14 +81,15 @@ class Marie
       content: ['Sabias que este tema se llama aplicacion mobile?, interesante, no?',
       'Aca te muestro un video explicativo',
       ],
-      video: 'https://www.youtube.com/watch?v=d8j-P9QdSi4'
+      video: 'https://www.youtube.com/embed/d8j-P9QdSi4'
     },
 
     'crear carrito electronico' => {
       content: ['Muy lindo e interesante',
         'Te muestro varios links que te pueden ayudar',
-        'Por ejemplo: https://www.uno-de-piera.com/carrito-de-compras-con-php/'
-        'https://www.godaddy.com/es/ecommerce/shopping-cart.aspx'
+        'Por ejemplo: https://www.uno-de-piera.com/carrito-de-compras-con-php/',
+        'https://www.godaddy.com/es/ecommerce/shopping-cart.aspx',
+      ]
     },
     'sirve office' => {
       content: ['Es una serie de herramientas destinadas a realizar todas las funciones que abarcan:', 
@@ -184,6 +185,7 @@ class Marie
           conversation: conversation
         )
       message.video = answer[:video] unless answer[:video].nil?
+      message.image = answer[:image] unless answer[:image].nil?
       message.save
     elsif MessageCorrector.check(conversation.lady_messages.last.content, 'chau')
       Message.create(
@@ -246,7 +248,7 @@ class Marie
     ]
 
     SINONIMS = {
-      'crear' => ['hacer', 'herramientas', 'herramienta']
+      'crear' => ['hacer', 'herramientas', 'herramienta'],
       'portal' => ['pagina','aplicacion']
     }
 

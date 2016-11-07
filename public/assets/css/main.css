@@ -3385,3 +3385,15 @@ input.textarea {
 	float: right !important;
 	text-align:right !important;
 }
+.screenboard{
+	display:block;
+	position:absolute;
+	width:54em;
+	height:100vh;
+	right:0;
+	z-index: 99999;
+	background:white;
+	display:flex;
+	flex-direction: center;
+	justify-content: center;
+}

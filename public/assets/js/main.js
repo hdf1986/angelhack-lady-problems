@@ -157,13 +157,19 @@ var lastTime = new Date().getTime();
 				clase = 'talk-to-marie';
 			}
 			console.log(container);
+
+
+			if(i['content'] != 'non'){
 				container.append('<div class=" ' + clase2 + ' row hello"><div class="col s3 m9"><div class="card-panel ' + clase + ' lighten-3 z-depth-5"><span class="black-text">' + i['content'] +'</span></div></div></div>')
-			
-			if(i['video'] != ''){
-				screenboard.empty().show(300).append('')
 			}
-			else if(i['image'] != ''){
-				screenboard.empty().show(300).append('')
+			else {
+				if(i['video'] != null && i['video'] != ''){
+					screenboard.show(300).html('<iframe src="'+i['video']+'" frameborder="0"></iframe>')
+				}
+				else if(i['image'] != null && i['image'] != ''){
+					screenboard.show(300).html($('<img src="'+i['image']+'"/>'))
+				}
+				
 			}
 		})
 	}
@@ -182,5 +188,6 @@ var lastTime = new Date().getTime();
 		form.find('input[name=content]').val('')
 		return false;
 	})
+	$('.screenboard').hide()
 	loadMessages();
 })(jQuery);
