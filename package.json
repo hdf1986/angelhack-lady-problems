@@ -1,0 +1,19 @@
+{
+  "name": "marie",
+  "version": "0.0.1",
+  "description": "A beatiful chatbot",
+  "main": "bin/mugi",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdf1986/angelhack-lady-problems.git"
+  },
+  "author": "Hugo Farji",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hdf1986/angelhack-lady-problems/issues"
+  },
+  "homepage": "https://github.com/hdf1986/angelhack-lady-problems#readme"
+}
