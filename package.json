@@ -4,7 +4,10 @@
   "description": "A beatiful chatbot",
   "main": "bin/mugi",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "forever --minUptime 1000ms --spinSleepTime 1000ms -w --watchDirectory ./app --sourceDir / --workingDir $(pwd) -f /usr/local/bin/npm run develop",
+    "develop": "npm run build && npm run work ",
+    "build": "webpack >> /dev/null",
+    "work": "node tmp/build/mugi.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/hdf1986/angelhack-lady-problems/issues"
   },
-  "homepage": "https://github.com/hdf1986/angelhack-lady-problems#readme"
+  "homepage": "https://github.com/hdf1986/angelhack-lady-problems#readme",
+  "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "forever": "^0.15.3"
+  }
 }
