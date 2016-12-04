@@ -4,7 +4,7 @@
   "description": "A beatiful chatbot",
   "main": "bin/mugi",
   "scripts": {
-    "start": "forever --minUptime 1000ms --spinSleepTime 1000ms -w --watchDirectory ./app --sourceDir / --workingDir $(pwd) -f /usr/local/bin/npm run develop",
+    "start": "nodemon --config config/environments/development/nodemon.json --exec 'npm run develop'",
     "develop": "npm run build && npm run work ",
     "build": "webpack >> /dev/null",
     "work": "node tmp/build/mugi.js"
@@ -23,6 +23,12 @@
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "babel-preset-es2015": "^6.18.0",
-    "forever": "^0.15.3"
+    "express": "^4.14.0",
+    "forever": "^0.15.3",
+    "pug": "^2.0.0-beta6",
+    "webpack": "^1.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

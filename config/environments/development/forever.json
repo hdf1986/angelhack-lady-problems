@@ -1,6 +1,0 @@
-{
-    "watch": true,
-    "spinSleepTime": 1000,
-    "minUpTime": 1000,
-    "script": "node"
-}

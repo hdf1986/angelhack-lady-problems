@@ -1,0 +1,13 @@
+{
+  "verbose": false,
+  "ignore": [
+    ".git/"
+  ],
+  "watch": [
+    "app/",
+    "bin/",
+    "config/",
+    "lib/",
+    "public/"
+  ]
+}

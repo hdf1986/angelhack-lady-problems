@@ -1,12 +1,11 @@
-import { MugiApplication } from '../lib/mugi/mugi_application'
+import { MugiApplication } from '../lib/mugi/mugi_application';
+import { Router } from './routes'
 
 class Application extends MugiApplication {
-  constructor(args) {
-    super();
-    console.log("test")
+  constructor(environment) {
+    super(environment);
+    this._router = new Router(this);
   }
-
-  // methods
 }
 
 export { Application };

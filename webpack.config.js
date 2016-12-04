@@ -5,10 +5,17 @@
 // Bootstrap
 // Fontawesome
 // Todo desde paquetes de npm
-// 
+
 var path = require('path');
+var fs = require('fs');
+var nodeModules = {};
 
 console.log('Loaded webpack!');
+
+fs.readdirSync(path.resolve(__dirname, 'node_modules'))
+    .filter(x => ['.bin'].indexOf(x) === -1)
+    .forEach(mod => { nodeModules[mod] = `commonjs ${mod}`; });
+
 module.exports = {
   entry: './bin/mugi.js',
   target: 'node',
@@ -16,6 +23,7 @@ module.exports = {
     path: path.join(__dirname, 'tmp', 'build'),
     filename: 'mugi.js'
   },
+  externals: nodeModules,
   module: {
     loaders: [
       {
